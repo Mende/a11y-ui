@@ -9,13 +9,16 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import styles from "./tailwind.css";
+
 export const links: LinksFunction = () => [
+  {rel: "stylesheet", href: styles },
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="emerald">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,10 +26,12 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+        <div className="container mx-auto">
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </div>
       </body>
     </html>
   );
